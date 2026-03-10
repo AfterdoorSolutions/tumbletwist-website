@@ -1,5 +1,29 @@
 /* ===== TumbleTwist – Modern Script ===== */
 
+/* ---------- Dark Mode Toggle ---------- */
+(function initTheme() {
+  const saved = localStorage.getItem('theme');
+  // Default to dark if nothing saved
+  if (saved === 'light') {
+    document.documentElement.classList.remove('dark');
+  } else {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('theme-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+});
+
 /* ---------- Preloader ---------- */
 window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,34 +12,21 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme: { extend: { colors: { primary: '#E63946', secondary: '#457B9D', accent: '#F4A261', light: '#F1FAEE', dark: '#1D3557', darker: '#0f2440', hover: '#D62839' }, fontFamily: { heading: ['"Plus Jakarta Sans"','system-ui','sans-serif'], body: ['"Inter"','system-ui','sans-serif'] } } } }
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#E63946', secondary: '#457B9D', accent: '#F4A261', light: '#F1FAEE', dark: '#1D3557', darker: '#0f2440', hover: '#D62839' }, fontFamily: { heading: ['"Plus Jakarta Sans"','system-ui','sans-serif'], body: ['"Inter"','system-ui','sans-serif'] } } } }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <style>
-    body{font-family:'Inter',system-ui,sans-serif}h1,h2,h3,h4,h5,h6{font-family:'Plus Jakarta Sans',system-ui,sans-serif}
-    .reveal{opacity:0;transform:translateY(40px);transition:all .7s cubic-bezier(.16,1,.3,1)}.reveal.revealed{opacity:1;transform:translateY(0)}
-    #navbar{transition:background .3s,box-shadow .3s,backdrop-filter .3s}.navbar-scrolled{background:rgba(255,255,255,.95)!important;backdrop-filter:blur(12px);box-shadow:0 1px 3px rgba(0,0,0,.08)}
-    .gradient-text{background:linear-gradient(135deg,#E63946 0%,#F4A261 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .card-hover{transition:all .4s cubic-bezier(.16,1,.3,1)}.card-hover:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(29,53,87,.1)}
-    .section-tag{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#E63946}.section-tag::before{content:'';width:24px;height:2px;background:#E63946;border-radius:2px}
-    #preloader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s}
-    .form-input{width:100%;padding:.75rem 1rem;border:1px solid #e5e7eb;border-radius:.75rem;font-size:.875rem;color:#1D3557;background:#fff;transition:border-color .2s,box-shadow .2s;outline:none}
-    .form-input:focus{border-color:#457B9D;box-shadow:0 0 0 3px rgba(69,123,157,.1)}
-    .form-input.error{border-color:#E63946;box-shadow:0 0 0 3px rgba(230,57,70,.1)}
-    .error-msg{display:none;color:#E63946;font-size:.75rem;margin-top:.25rem}
-    .form-group.has-error .error-msg{display:block}
-    .form-group.has-error .form-input{border-color:#E63946;box-shadow:0 0 0 3px rgba(230,57,70,.1)}
-  </style>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="text-gray-700 bg-white antialiased">
+<body class="antialiased">
   <div id="preloader"><div class="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div></div>
 
   <!-- NAVBAR -->
   <nav id="navbar" class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-[72px]">
-      <a href="index.html" class="flex items-center gap-2.5"><img src="images/logo.png" alt="TumbleTwist Logo" class="h-9 w-auto" /><span class="text-xl font-extrabold font-heading text-dark tracking-tight">Tumble<span class="text-primary">Twist</span></span></a>
+      <a href="index.html" class="flex items-center"><img src="images/logo-light.png" alt="TumbleTwist" class="h-9 w-auto logo-light" /><img src="images/logo-dark.png" alt="TumbleTwist" class="h-9 w-auto logo-dark" /></a>
+      <div class="flex items-center gap-3">
       <ul class="hidden lg:flex items-center gap-10 text-[0.9rem] font-medium text-gray-600">
         <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
         <li><a href="services.html" class="hover:text-primary transition-colors">Services</a></li>
@@ -48,7 +35,9 @@
         <li><a href="about.html" class="hover:text-primary transition-colors">About</a></li>
         <li><a href="contact.html" class="ml-2 bg-dark text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-primary transition-colors">Get in Touch</a></li>
       </ul>
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" aria-label="Toggle theme"><i data-lucide="sun" class="w-5 h-5 theme-icon-sun text-yellow-400"></i><i data-lucide="moon" class="w-5 h-5 theme-icon-moon text-dark"></i></button>
       <button id="menu-btn" class="lg:hidden p-2 text-dark" aria-label="Toggle menu" aria-expanded="false"><i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i><i id="close-icon" data-lucide="x" class="w-6 h-6 hidden"></i></button>
+      </div>
     </div>
     <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 top-[72px] bg-white z-40"><div class="flex flex-col px-6 py-8 gap-1">
       <a href="index.html" class="py-3.5 text-lg font-medium text-gray-600 border-b border-gray-100">Home</a>
@@ -172,7 +161,7 @@
   <footer class="bg-darker text-gray-400 pt-16 pb-8">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="grid md:grid-cols-4 gap-10 mb-14">
-        <div><div class="flex items-center gap-2.5 mb-4"><img src="images/logo.png" alt="TumbleTwist Logo" class="h-8 w-auto" /><span class="text-lg font-extrabold font-heading text-white tracking-tight">Tumble<span class="text-primary">Twist</span></span></div><p class="text-sm leading-relaxed">Creating exciting, safe, and memorable event experiences for kids, schools, and corporates since 2020.</p></div>
+        <div><div class="mb-4"><img src="images/logo-light.png" alt="TumbleTwist" class="h-8 w-auto" /></div><p class="text-sm leading-relaxed">Creating exciting, safe, and memorable event experiences for kids, schools, and corporates since 2020.</p></div>
         <div><h4 class="font-semibold font-heading text-white text-sm mb-5">Quick Links</h4><ul class="space-y-3 text-sm"><li><a href="index.html" class="hover:text-white transition-colors">Home</a></li><li><a href="services.html" class="hover:text-white transition-colors">Services</a></li><li><a href="events.html" class="hover:text-white transition-colors">Events</a></li><li><a href="gallery.html" class="hover:text-white transition-colors">Gallery</a></li><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
         <div><h4 class="font-semibold font-heading text-white text-sm mb-5">Contact</h4><ul class="space-y-3 text-sm"><li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-gray-500"></i> hello@tumbletwist.com.au</li><li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-gray-500"></i> +61 400 123 456</li><li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-gray-500"></i> Melbourne VIC 3000</li></ul></div>
         <div><h4 class="font-semibold font-heading text-white text-sm mb-5">Follow Us</h4><div class="flex gap-3"><a href="#" aria-label="Facebook" class="w-9 h-9 border border-white/10 rounded-lg flex items-center justify-center hover:bg-white/10 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a><a href="#" aria-label="Instagram" class="w-9 h-9 border border-white/10 rounded-lg flex items-center justify-center hover:bg-white/10 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="#" aria-label="Twitter / X" class="w-9 h-9 border border-white/10 rounded-lg flex items-center justify-center hover:bg-white/10 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></div></div>

@@ -1,0 +1,378 @@
+/* =============================================
+   TumbleTwist — Global Stylesheet
+   ============================================= */
+
+/* ---------- Base Typography ---------- */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ---------- Reveal Animations ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Navbar ---------- */
+#navbar {
+  transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
+}
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Gradient Text ---------- */
+.gradient-text {
+  background: linear-gradient(135deg, #E63946 0%, #F4A261 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Card Hover ---------- */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(29, 53, 87, 0.1);
+}
+
+/* ---------- Service Number ---------- */
+.service-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(29, 53, 87, 0.04);
+  position: absolute;
+  top: -10px;
+  right: 16px;
+}
+
+/* ---------- Section Tag ---------- */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E63946;
+}
+.section-tag::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: #E63946;
+  border-radius: 2px;
+}
+
+/* ---------- Preloader ---------- */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+  background: #fff;
+}
+
+/* ---------- Gallery ---------- */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.gallery-item img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+.gallery-item .gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(29, 53, 87, 0.7) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* ---------- Lightbox ---------- */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+#lightbox.active {
+  display: flex;
+}
+#lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 1rem;
+  object-fit: contain;
+}
+.lightbox-inner {
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#lightbox.active .lightbox-inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ---------- Contact Form ---------- */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: #1D3557;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.3s, color 0.3s;
+  outline: none;
+}
+.form-input:focus {
+  border-color: #457B9D;
+  box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.1);
+}
+.form-input.error {
+  border-color: #E63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+.error-msg {
+  display: none;
+  color: #E63946;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+.form-group.has-error .error-msg {
+  display: block;
+}
+.form-group.has-error .form-input {
+  border-color: #E63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+/* ---------- Logo Switching ---------- */
+.logo-light { display: none; }
+.logo-dark  { display: block; }
+
+/* ---------- Theme Toggle ---------- */
+.theme-icon-sun  { display: none; }
+.theme-icon-moon { display: block; }
+
+
+/* =============================================
+   DARK MODE
+   ============================================= */
+
+/* Logo swap */
+html.dark .logo-light { display: block; }
+html.dark .logo-dark  { display: none; }
+
+/* Theme toggle icon swap */
+html.dark .theme-icon-sun  { display: block; }
+html.dark .theme-icon-moon { display: none; }
+
+/* Body */
+html.dark body {
+  background-color: #0b1929;
+  color: #94a3b8;
+}
+
+/* Preloader */
+html.dark #preloader {
+  background: #0b1929;
+}
+
+/* Navbar */
+html.dark #navbar {
+  background: rgba(11, 25, 41, 0.8);
+}
+html.dark .navbar-scrolled {
+  background: rgba(11, 25, 41, 0.95) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile menu */
+html.dark #mobile-menu {
+  background: #0b1929;
+}
+
+/* ---- Surface / Background overrides ---- */
+html.dark .bg-white {
+  background-color: #0b1929 !important;
+}
+
+html.dark .bg-gray-50\/80,
+html.dark .bg-gray-50\/50,
+html.dark .bg-gray-50 {
+  background-color: #0f1f33 !important;
+}
+
+/* ---- Text overrides ---- */
+html.dark .text-dark {
+  color: #e2e8f0 !important;
+}
+html.dark .text-gray-700 {
+  color: #94a3b8 !important;
+}
+html.dark .text-gray-600 {
+  color: #8899aa !important;
+}
+html.dark .text-gray-500 {
+  color: #7b8fa3 !important;
+}
+html.dark .text-gray-400 {
+  color: #6b7f94 !important;
+}
+html.dark .text-white {
+  color: #f1faee !important;
+}
+
+/* ---- Border overrides ---- */
+html.dark .border-gray-100 {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+html.dark .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---- Navbar button ---- */
+html.dark #navbar a.bg-dark,
+html.dark #mobile-menu a.bg-dark {
+  background-color: #E63946 !important;
+}
+
+/* ---- Hero border button ---- */
+html.dark .border-dark\/10 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* ---- Cards / bordered surfaces ---- */
+html.dark .border.bg-white,
+html.dark .bg-white.border {
+  background-color: #10243b !important;
+}
+html.dark .bg-gray-50.border,
+html.dark .border.bg-gray-50 {
+  background-color: #10243b !important;
+}
+
+/* ---- Service number ---- */
+html.dark .service-num {
+  color: rgba(255, 255, 255, 0.03);
+}
+
+/* ---- Card hover shadow ---- */
+html.dark .card-hover:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Image shadow ---- */
+html.dark .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+html.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ---- Floating badge & white backdrop ---- */
+html.dark .bg-white\/90 {
+  background-color: rgba(16, 36, 59, 0.9) !important;
+}
+html.dark .backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+/* ---- Form inputs ---- */
+html.dark .form-input {
+  background: #10243b;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+html.dark .form-input:focus {
+  border-color: #457B9D;
+  box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.2);
+}
+
+/* ---- Form success ---- */
+html.dark .bg-green-50 {
+  background-color: rgba(34, 197, 94, 0.08) !important;
+}
+html.dark .border-green-200 {
+  border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+/* ---- Scroll to top ---- */
+html.dark #scroll-top {
+  background: #10243b;
+}
+html.dark #scroll-top:hover {
+  background: #E63946;
+}
+
+/* ---- Icon background boxes (keep subtle in dark) ---- */
+html.dark .bg-primary\/10 { background-color: rgba(230, 57, 70, 0.12) !important; }
+html.dark .bg-secondary\/10 { background-color: rgba(69, 123, 157, 0.12) !important; }
+html.dark .bg-accent\/10 { background-color: rgba(244, 162, 97, 0.12) !important; }
+html.dark .bg-green-50 { background-color: rgba(34, 197, 94, 0.08) !important; }
+html.dark .bg-purple-50 { background-color: rgba(147, 51, 234, 0.08) !important; }
+html.dark .bg-rose-50 { background-color: rgba(244, 63, 94, 0.08) !important; }
+
+/* ---- White border for social icons ---- */
+html.dark .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---- CTA section (always dark — darken slightly more) ---- */
+html.dark section.bg-dark {
+  background-color: #060e1a !important;
+}
+
+/* ---- Footer (already dark — slightly adjust) ---- */
+html.dark footer.bg-darker {
+  background-color: #060e1a;
+}
+
+/* ---- Contact social icons in light mode ---- */
+html.dark .border-gray-200.hover\:bg-primary:hover {
+  background-color: #E63946;
+}
+
+/* ---- Select dropdown in dark ---- */
+html.dark select.form-input option {
+  background: #10243b;
+  color: #e2e8f0;
+}
